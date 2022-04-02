@@ -1,5 +1,6 @@
-package com.example.notebookwithkotlin
+package com.example.notebookwithkotlin.basic
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class BasicTest {
@@ -38,5 +39,14 @@ class BasicTest {
         infix fun likes(other: Person) {
             likedPeople.add(other)
         }
+    }
+
+    @Test
+    internal fun equality() {
+        val authors = setOf("Shakespeare", "Hemingway", "Twain")
+        val writers = setOf("Twain", "Shakespeare", "Hemingway")
+
+        assertThat(authors == writers).isTrue // structural comparison
+        assertThat(authors === writers).isFalse // referential comparison
     }
 }
