@@ -60,4 +60,13 @@ internal class MutableStackTest {
         println(stack)
         assertThat(stack.size()).isEqualTo(7)
     }
+
+    @Test
+    internal fun iterator() {
+        val stack = MutableStack("grace", "shelf", "happy", "coin", "figure")
+
+        for (word in stack) {
+            println(word)
+        }
+    }
 }

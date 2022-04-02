@@ -18,4 +18,6 @@ class MutableStack<E>(vararg items: E) {
 
     override fun toString() = "MutableStack(${elements.joinToString()})"
 
+    operator fun iterator() = elements.iterator()
+
 }
