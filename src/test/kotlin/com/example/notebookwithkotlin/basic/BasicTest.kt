@@ -67,4 +67,17 @@ class BasicTest {
         println(positive)
         println(negative)
     }
+
+    @Test
+    internal fun flatMap() {
+        val strings1 = listOf("entrance", "point", "terrible", "rob", "hear")
+        val strings2 = listOf("smoke", "law", "wander", "arrest", "kitchen")
+        val words = listOf(strings1, strings2)
+
+        val mapWords = words.map { it }
+        val flatMapWords = words.flatMap { it }
+
+        println("mapWords = $mapWords")
+        println("flatMapWords = $flatMapWords")
+    }
 }
