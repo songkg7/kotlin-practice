@@ -115,4 +115,15 @@ class BasicTest {
 
         println("isEmpty = $isEmpty")
     }
+
+    @Test
+    internal fun run() {
+        val person = Person("sophia", "New York", "123-1234-1234")
+        val name = person.run {
+            println("run")
+            name
+        }
+
+        println(name)
+    }
 }
