@@ -55,4 +55,16 @@ class BasicTest {
         println(peopleCities)
         println(lastPersonCity)
     }
+
+    @Test
+    internal fun partition() {
+        val numbers = listOf(1, -2, 3, -4, 5, -6)
+        val evenOdd = numbers.partition { it % 2 == 0 }
+        val (positive, negative) = numbers.partition { it > 0 }
+
+        println(numbers)
+        println(evenOdd)
+        println(positive)
+        println(negative)
+    }
 }
