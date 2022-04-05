@@ -104,4 +104,15 @@ class BasicTest {
         println("value3 = $value3")
         println("value4 = $value4")
     }
+
+    @Test
+    internal fun let() {
+        // let scope function 은 가장 마지막 expression 의 결과값을 return
+        val isEmpty = "test".let {
+            println(it)
+            it.isEmpty()
+        }
+
+        println("isEmpty = $isEmpty")
+    }
 }
