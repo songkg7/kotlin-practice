@@ -1,5 +1,6 @@
 package com.example.notebookwithkotlin.basic.list
 
+import com.example.notebookwithkotlin.basic.collections.list.SystemUser
 import org.junit.jupiter.api.Test
 
 internal class SystemUserTest {

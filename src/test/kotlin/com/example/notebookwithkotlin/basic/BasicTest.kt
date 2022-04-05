@@ -1,5 +1,6 @@
 package com.example.notebookwithkotlin.basic
 
+import com.example.notebookwithkotlin.basic.collections.Person
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
@@ -25,20 +26,6 @@ class BasicTest {
         infix fun String.onto(other: String) = Pair(this, other)
         val myPair = "McLaren" onto "Lucas"
         println(myPair)
-
-        val sophia = Person("Sophia")
-        val claudia = Person("Claudia")
-
-        sophia likes claudia
-        sophia.likedPeople.forEach { println(it.name) }
-    }
-
-    class Person(val name: String) {
-        val likedPeople = mutableListOf<Person>()
-
-        infix fun likes(other: Person) {
-            likedPeople.add(other)
-        }
     }
 
     @Test
@@ -48,5 +35,24 @@ class BasicTest {
 
         assertThat(authors == writers).isTrue // structural comparison
         assertThat(authors === writers).isFalse // referential comparison
+    }
+
+    @Test
+    internal fun associateBy() {
+        val people = listOf(
+            Person("John", "Boston", "+1-888-123456"),
+            Person("Sarah", "Munich", "+49-777-789123"),
+            Person("Svyatoslav", "Saint-Petersburg", "+7-999-456789"),
+            Person("Vasilisa", "Saint-Petersburg", "+7-999-123456"))
+
+        val phoneBook = people.associateBy { it.phone }
+        val cityBook = people.associateBy(Person::phone, Person::city)
+        val peopleCities = people.groupBy(Person::city, Person::name)
+        val lastPersonCity = people.associateBy(Person::city, Person::name)
+
+        println(phoneBook)
+        println(cityBook)
+        println(peopleCities)
+        println(lastPersonCity)
     }
 }

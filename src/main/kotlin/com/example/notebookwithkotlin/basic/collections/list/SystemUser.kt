@@ -1,4 +1,4 @@
-package com.example.notebookwithkotlin.basic.list
+package com.example.notebookwithkotlin.basic.collections.list
 
 class SystemUser {
 

@@ -1,5 +1,6 @@
 package com.example.notebookwithkotlin.basic.set
 
+import com.example.notebookwithkotlin.basic.collections.set.Issue
 import org.junit.jupiter.api.Test
 
 internal class IssueTest {

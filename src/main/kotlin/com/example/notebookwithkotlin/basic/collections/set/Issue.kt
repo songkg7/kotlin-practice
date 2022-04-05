@@ -1,4 +1,4 @@
-package com.example.notebookwithkotlin.basic.set
+package com.example.notebookwithkotlin.basic.collections.set
 
 class Issue {
 
