@@ -1,4 +1,4 @@
-package com.example.notebookwithkotlin.basic.delegation
+package com.example.notebookwithkotlin.basic.delegation.pattern
 
 class RockAndRollBehavior(val n: String) : SoundBehavior {
 

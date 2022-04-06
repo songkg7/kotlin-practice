@@ -1,4 +1,4 @@
-package com.example.notebookwithkotlin.basic.delegation
+package com.example.notebookwithkotlin.basic.delegation.pattern
 
 class ScreamBehavior(val n: String) : SoundBehavior {
 
