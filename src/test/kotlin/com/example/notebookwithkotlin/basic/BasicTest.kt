@@ -126,4 +126,10 @@ class BasicTest {
 
         println(name)
     }
+
+    @Test
+    internal fun namedArguments() {
+        val song = Person(city = "Seoul", phone = "01022222222", name = "song")
+        println(song)
+    }
 }
