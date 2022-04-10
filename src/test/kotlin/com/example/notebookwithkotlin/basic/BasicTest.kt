@@ -4,6 +4,8 @@ import com.example.notebookwithkotlin.basic.collections.Person
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
+typealias PersonIndex = Map<String, Person>
+
 class BasicTest {
 
     @Test
@@ -131,5 +133,10 @@ class BasicTest {
     internal fun namedArguments() {
         val song = Person(city = "Seoul", phone = "01022222222", name = "song")
         println(song)
+    }
+
+    @Test
+    internal fun `typeAlias 사용방법`() {
+        val mapOf: PersonIndex = mapOf("key" to Person("Jenna", "Mc Caysville", "1234"))
     }
 }
