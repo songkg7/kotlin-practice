@@ -1,27 +1,29 @@
 package com.example.notebookwithkotlin
 
-import kotlin.random.Random
-
 fun main() {
-    printTransformedGreeting {
-        this.sarcastic()
+    val logger = Logger("Main")
+    val notificationSender = NotificationSender()
+    with(logger) {
+        with(notificationSender) {
+            store("An image")
+            store("A text file")
+            store("A cheese berger")
+        }
     }
-}
-
-fun String.sarcastic(): String {
-    return asIterable().joinToString("") {
-        if (Random.nextBoolean()) it.uppercase() else it.lowercase()
-    }
-}
-
-fun printTransformedGreeting(transform: String.() -> Unit) {
-    val greeting = "Hello, World!"
-    val transformed = greeting.transform()
-    println(transformed)
 }
 
 class Logger(val name: String) {
     fun log(s: String) {
         println("$name: $s")
     }
+}
+
+class NotificationSender {
+    fun send(s: String) = println("NOTIFY: $s")
+}
+
+context(Logger, NotificationSender)
+fun store(s: String) {
+    log("Stored $s on disk (via $name).")
+    send("Successful storage event.")
 }
