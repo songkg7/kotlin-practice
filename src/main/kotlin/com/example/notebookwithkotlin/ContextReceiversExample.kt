@@ -1,26 +1,5 @@
 package com.example.notebookwithkotlin
 
-fun main() {
-    val logger = Logger("Main")
-    val notificationSender = NotificationSender()
-
-    val loggerContext = object : LoggerContext {
-        override val logger = logger
-    }
-
-    val notificationContext = object : NotificationContext {
-        override val notificationSender = notificationSender
-    }
-
-    with(loggerContext) {
-        with(notificationContext) {
-            store("An image")
-            store("A text file")
-            store("A cheese berger")
-        }
-    }
-}
-
 class Logger(val name: String) {
     fun log(s: String) {
         println("$name: $s")
@@ -40,7 +19,35 @@ interface NotificationContext {
 }
 
 context(LoggerContext, NotificationContext)
-fun store(s: String) {
+class Repository {
+    fun store(s: String) {
+        logStorageEvent(s)
+        notificationSender.log("Successful storage event.")
+    }
+}
+
+context(LoggerContext)
+fun logStorageEvent(s: String) {
     logger.log("Stored $s on disk (via ${logger.name}).")
-    notificationSender.log("Successful storage event.")
+}
+
+fun main() {
+    val logger = Logger("Main")
+    val notificationSender = NotificationSender()
+
+    val loggerContext = object : LoggerContext {
+        override val logger = logger
+    }
+
+    val notificationContext = object : NotificationContext {
+        override val notificationSender = notificationSender
+    }
+
+    val repository = with(loggerContext) {
+        with(notificationContext) {
+            Repository()
+        }
+    }
+
+    repository.store("An idea")
 }
