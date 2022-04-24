@@ -3,8 +3,17 @@ package com.example.notebookwithkotlin
 fun main() {
     val logger = Logger("Main")
     val notificationSender = NotificationSender()
-    with(logger) {
-        with(notificationSender) {
+
+    val loggerContext = object : LoggerContext {
+        override val logger = logger
+    }
+
+    val notificationContext = object : NotificationContext {
+        override val notificationSender = notificationSender
+    }
+
+    with(loggerContext) {
+        with(notificationContext) {
             store("An image")
             store("A text file")
             store("A cheese berger")
@@ -19,11 +28,19 @@ class Logger(val name: String) {
 }
 
 class NotificationSender {
-    fun send(s: String) = println("NOTIFY: $s")
+    fun log(s: String) = println("NOTIFY: $s")
 }
 
-context(Logger, NotificationSender)
+interface LoggerContext {
+    val logger: Logger
+}
+
+interface NotificationContext {
+    val notificationSender: NotificationSender
+}
+
+context(LoggerContext, NotificationContext)
 fun store(s: String) {
-    log("Stored $s on disk (via $name).")
-    send("Successful storage event.")
+    logger.log("Stored $s on disk (via ${logger.name}).")
+    notificationSender.log("Successful storage event.")
 }
