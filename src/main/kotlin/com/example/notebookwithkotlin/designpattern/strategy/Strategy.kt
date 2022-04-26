@@ -5,28 +5,20 @@ interface SurvivalStrategy {
 }
 
 class SwimStrategy : SurvivalStrategy {
-    override fun action() {
-        println("Swimming!")
-    }
+    override fun action() = println("Swimming!")
 }
 
 class FlyStrategy : SurvivalStrategy {
-    override fun action() {
-        println("Flying!")
-    }
+    override fun action() = println("Flying!")
 }
 
 class RunStrategy : SurvivalStrategy {
-    override fun action() {
-        println("Running!")
-    }
+    override fun action() = println("Running!")
 }
 
 abstract class Animal(private val strategies: List<SurvivalStrategy>) {
 
-    fun move() {
-        strategies.forEach { it.action() }
-    }
+    fun move() = strategies.forEach { it.action() }
 }
 
 class Lion(abilities: List<SurvivalStrategy>) : Animal(abilities)
