@@ -5,37 +5,27 @@ interface Command {
 }
 
 class Button(private val command: Command) {
-    fun pressed() {
-        command.execute()
-    }
+    fun pressed() = command.execute()
 }
 
 class Alarm {
-    fun alarmOn() {
-        println("Alarming!!")
-    }
+    fun alarmOn() = println("Alarming!!")
 }
 
 class Lamp {
-    fun turnOn() {
-        println("turn on the lamp.")
-    }
+    fun turnOn() = println("turn on the lamp.")
 }
 
 class AlarmOnCommand : Command {
     private val alarm = Alarm()
 
-    override fun execute() {
-        alarm.alarmOn()
-    }
+    override fun execute() = alarm.alarmOn()
 }
 
 class LampOnCommand : Command {
     private val lamp = Lamp()
 
-    override fun execute() {
-        lamp.turnOn()
-    }
+    override fun execute() = lamp.turnOn()
 }
 
 fun main() {
