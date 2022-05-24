@@ -12,8 +12,9 @@ internal class CardsTest {
 
         cards.cards shouldBe emptyList()
 
-        cards.add(Card(7))
+        val card = Card(7)
+        cards.add(card)
 
-        cards.cards shouldContain Card(7)
+        cards.cards shouldContain card
     }
 }
