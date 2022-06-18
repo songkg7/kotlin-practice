@@ -1,2 +1,3 @@
-rootProject.name = "notebook-with-kotlin"
+rootProject.name = "kotlin-practice"
 include("basic")
+include("design-pattern")
