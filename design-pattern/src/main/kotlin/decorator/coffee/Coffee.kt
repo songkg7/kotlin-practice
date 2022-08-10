@@ -1,4 +1,4 @@
-package decorator
+package decorator.coffee
 
 interface Coffee {
     fun recipe(): String

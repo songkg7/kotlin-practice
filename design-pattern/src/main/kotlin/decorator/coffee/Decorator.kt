@@ -1,4 +1,4 @@
-package decorator
+package decorator.coffee
 
 abstract class Decorator(private val coffee: Coffee) : Coffee {
 
