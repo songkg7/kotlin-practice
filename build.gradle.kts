@@ -7,18 +7,16 @@ plugins {
 
 java.sourceCompatibility = JavaVersion.VERSION_11
 
-allprojects {
+subprojects {
+    apply {
+        plugin("org.jetbrains.kotlin.jvm")
+    }
+
     group = "com.example"
     version = "0.0.1-SNAPSHOT"
 
     repositories {
         mavenCentral()
-    }
-}
-
-subprojects {
-    apply {
-        plugin("org.jetbrains.kotlin.jvm")
     }
 
     dependencies {
