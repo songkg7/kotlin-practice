@@ -1,22 +1,33 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
-    id("org.springframework.boot") version "2.7.0"
-    id("io.spring.dependency-management") version "1.0.11.RELEASE"
     kotlin("jvm") version "1.7.0"
-    kotlin("plugin.spring") version "1.7.0"
+//    id("org.springframework.boot") version "2.7.0"
+//    id("io.spring.dependency-management") version "1.0.11.RELEASE"
+//    kotlin("plugin.spring") version "1.7.0" apply false
 }
 
 java.sourceCompatibility = JavaVersion.VERSION_11
 
-subprojects {
-    apply {
-        plugin("org.jetbrains.kotlin.jvm")
-    }
-
+allprojects {
     group = "com.example"
     version = "0.0.1-SNAPSHOT"
 
     repositories {
         mavenCentral()
+    }
+}
+
+subprojects {
+    apply {
+        plugin("org.jetbrains.kotlin.jvm")
+        plugin("java")
+//        plugin("io.spring.dependency-management")
+//        plugin("org.springframework.boot")
+//        plugin("org.jetbrains.kotlin.plugin.spring")
+        plugin("kotlin")
+//        plugin("kotlin-spring") //all-open
+//        plugin("kotlin-jpa")
     }
 
     dependencies {
@@ -31,5 +42,18 @@ subprojects {
 
     tasks.withType<Test> {
         useJUnitPlatform()
+    }
+
+    tasks.withType<KotlinCompile> {
+        kotlinOptions {
+            freeCompilerArgs = listOf("-Xjsr305=strict")
+            jvmTarget = "11"
+        }
+    }
+
+    configurations {
+        compileOnly {
+            extendsFrom(configurations.annotationProcessor.get())
+        }
     }
 }
