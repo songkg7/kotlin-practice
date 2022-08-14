@@ -1,4 +1,4 @@
-package enumclasses
+package enums
 
 import org.junit.jupiter.api.Test
 
