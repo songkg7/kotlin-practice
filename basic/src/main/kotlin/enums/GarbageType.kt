@@ -24,5 +24,12 @@ enum class GarbageType(val koName: String, val calculate: (Int) -> Int) {
             in 30..Int.MAX_VALUE -> 200
             else -> throw IllegalArgumentException()
         }
-    })
+    });
+
+}
+
+fun sell(pair: Pair<Int, GarbageType>): Int {
+    val (weight, type) = pair
+    val price = type.calculate(weight)
+    return weight * price
 }
