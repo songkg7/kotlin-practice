@@ -7,17 +7,6 @@ plugins {
 //    kotlin("plugin.spring") version "1.7.0" apply false
 }
 
-java.sourceCompatibility = JavaVersion.VERSION_11
-
-allprojects {
-    group = "com.example"
-    version = "0.0.1-SNAPSHOT"
-
-    repositories {
-        mavenCentral()
-    }
-}
-
 subprojects {
     apply {
         plugin("org.jetbrains.kotlin.jvm")
@@ -28,6 +17,13 @@ subprojects {
         plugin("kotlin")
 //        plugin("kotlin-spring") //all-open
 //        plugin("kotlin-jpa")
+    }
+
+    group = "com.example"
+    version = "0.0.1-SNAPSHOT"
+
+    repositories {
+        mavenCentral()
     }
 
     dependencies {
@@ -47,7 +43,7 @@ subprojects {
     tasks.withType<KotlinCompile> {
         kotlinOptions {
             freeCompilerArgs = listOf("-Xjsr305=strict")
-            jvmTarget = "11"
+            jvmTarget = "17"
         }
     }
 
