@@ -4,8 +4,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class SpringSecurityApplication
+class SpringWebfluxSecurityApplication
 
 fun main(args: Array<String>) {
-	runApplication<SpringSecurityApplication>(*args)
+	runApplication<SpringWebfluxSecurityApplication>(*args)
 }
