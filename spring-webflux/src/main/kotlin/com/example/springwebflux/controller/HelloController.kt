@@ -28,4 +28,10 @@ class HelloController {
         val stream = generateSequence(0) { it + 2 }.asStream()
         return Flux.fromStream(stream.limit(5)).map { mapOf("value" to it) }
     }
+
+    @GetMapping("/flux/infinity")
+    fun infinityStreamFlux(): Flux<Map<String, Int>> {
+        val stream = generateSequence(0) { it + 1 }.asStream()
+        return Flux.fromStream(stream).map { mapOf("value" to it) }
+    }
 }
