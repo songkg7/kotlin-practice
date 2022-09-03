@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RestController
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
+import java.time.Duration
 import java.util.stream.Stream
 import kotlin.streams.asStream
 
@@ -33,5 +34,12 @@ class HelloController {
     fun infinityStreamFlux(): Flux<Map<String, Int>> {
         val stream = generateSequence(0) { it + 1 }.asStream()
         return Flux.fromStream(stream).map { mapOf("value" to it) }
+    }
+
+    @GetMapping("/flux/duration")
+    fun durationStream(): Flux<Map<String, Long>> {
+        val stream = generateSequence(0) { it + 1 }.asStream()
+        return Flux.fromStream(stream).zipWith(Flux.interval(Duration.ofSeconds(2)))
+            .map { mapOf() }
     }
 }
