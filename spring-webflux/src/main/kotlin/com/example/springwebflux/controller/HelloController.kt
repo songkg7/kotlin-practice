@@ -1,6 +1,8 @@
 package com.example.springwebflux.controller
 
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
@@ -42,4 +44,10 @@ class HelloController {
         return Flux.fromStream(stream).zipWith(Flux.interval(Duration.ofSeconds(2)))
             .map { mapOf("value" to it.t2) }
     }
+
+    @PostMapping("echo")
+    fun uppercase(@RequestBody body: Mono<String>): Mono<String> {
+        return body.map { it.uppercase() }
+    }
+
 }
