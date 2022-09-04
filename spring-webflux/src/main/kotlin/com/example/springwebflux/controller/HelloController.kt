@@ -40,6 +40,6 @@ class HelloController {
     fun durationStream(): Flux<Map<String, Long>> {
         val stream = generateSequence(0) { it + 1 }.asStream()
         return Flux.fromStream(stream).zipWith(Flux.interval(Duration.ofSeconds(2)))
-            .map { mapOf() }
+            .map { mapOf("value" to it.t2) }
     }
 }
