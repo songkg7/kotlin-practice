@@ -50,4 +50,9 @@ class HelloController {
         return body.map { it.uppercase() }
     }
 
+    // NOTE: key 가 value 인 값을 2배 곱하여 key 가 double 인 Map 에 넣어 반환한다.
+    @PostMapping("/stream")
+    fun streamFlux(@RequestBody body: Flux<Map<String, Long>>): Flux<Map<String, Long>> {
+        return body.map { mapOf("double" to (it["value"]!!.times(2))) }
+    }
 }
