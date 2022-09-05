@@ -1,7 +1,8 @@
+import collections.Person
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-typealias PersonIndex = Map<String, collections.Person>
+typealias PersonIndex = Map<String, Person>
 
 class BasicTest {
 
@@ -39,16 +40,16 @@ class BasicTest {
     @Test
     internal fun associateBy() {
         val people = listOf(
-            collections.Person("John", "Boston", "+1-888-123456"),
-            collections.Person("Sarah", "Munich", "+49-777-789123"),
-            collections.Person("Svyatoslav", "Saint-Petersburg", "+7-999-456789"),
-            collections.Person("Vasilisa", "Saint-Petersburg", "+7-999-123456")
+            Person("John", "Boston", "+1-888-123456"),
+            Person("Sarah", "Munich", "+49-777-789123"),
+            Person("Svyatoslav", "Saint-Petersburg", "+7-999-456789"),
+            Person("Vasilisa", "Saint-Petersburg", "+7-999-123456")
         )
 
         val phoneBook = people.associateBy { it.phone }
-        val cityBook = people.associateBy(collections.Person::phone, collections.Person::city)
-        val peopleCities = people.groupBy(collections.Person::city, collections.Person::name)
-        val lastPersonCity = people.associateBy(collections.Person::city, collections.Person::name)
+        val cityBook = people.associateBy(Person::phone, Person::city)
+        val peopleCities = people.groupBy(Person::city, Person::name)
+        val lastPersonCity = people.associateBy(Person::city, Person::name)
 
         println(phoneBook)
         println(cityBook)
@@ -118,7 +119,7 @@ class BasicTest {
 
     @Test
     internal fun run() {
-        val person = collections.Person("sophia", "New York", "123-1234-1234")
+        val person = Person("sophia", "New York", "123-1234-1234")
         val name = person.run {
             println("run")
             name
@@ -129,12 +130,12 @@ class BasicTest {
 
     @Test
     internal fun namedArguments() {
-        val song = collections.Person(city = "Seoul", phone = "01022222222", name = "song")
+        val song = Person(city = "Seoul", phone = "01022222222", name = "song")
         println(song)
     }
 
     @Test
     internal fun `typeAlias 사용방법`() {
-        val mapOf: PersonIndex = mapOf("key" to collections.Person("Jenna", "Mc Caysville", "1234"))
+        val mapOf: PersonIndex = mapOf("key" to Person("Jenna", "Mc Caysville", "1234"))
     }
 }
