@@ -53,7 +53,7 @@ class StreamTest : DescribeSpec({
                 any shouldBe true
             }
 
-            it("any 는 조건식 없이도 사용할 수 있다. 이경우에 any 는 원소가 있을 경우 true 를 반환한다.") {
+            it("조건식 없이도 사용할 수 있다. 이경우에 원소가 있을 경우 true 를 반환한다.") {
                 val any = numbers.any()
                 any shouldBe true
             }
@@ -65,7 +65,7 @@ class StreamTest : DescribeSpec({
                 none shouldBe true
             }
 
-            it("none 은 조건식 없이도 사용할 수 있다. 이 경우에 none 은 원소가 있을 경우 false 를 반환한다.") {
+            it("조건식 없이도 사용할 수 있다. 이 경우에 원소가 있을 경우 false 를 반환한다.") {
                 val none = numbers.none()
                 none shouldBe false
             }
@@ -77,7 +77,7 @@ class StreamTest : DescribeSpec({
                 all shouldBe false
             }
 
-            it("all 함수는 비어있는 Collection 에 어떤 조건이 오더라도 true 를 반환한다. 이것을 vacuous truth 라고 한다.") {
+            it("비어있는 Collection 에 어떤 조건이 오더라도 true 를 반환한다. 이것을 vacuous truth 라고 한다.") {
                 val all = emptyList<Int>().all { it > 5 }
                 all shouldBe true
             }
