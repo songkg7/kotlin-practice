@@ -84,4 +84,44 @@ class StreamTest : DescribeSpec({
         }
     }
 
+    describe("map") {
+        val numbers = setOf(1, 2, 3)
+
+        context("mapIndexed") {
+            it("인덱스와 값 둘 다 이용하여 조건을 주거나 새로운 값을 만들어 낼 수 있다.") {
+                val map = numbers.map { it * 3 }
+                map shouldBe setOf(3, 6, 9)
+            }
+        }
+
+        context("mapNotNull") {
+            it("null 인 원소들은 포함하지 않는다.") {
+                val mapNotNull = numbers.mapNotNull { if (it == 2) null else it * 3 }
+                mapNotNull shouldBe setOf(3, 9)
+            }
+        }
+
+        context("mapIndexedNotNull") {
+            it("null 인 원소들은 포함하지 않는다.") {
+                val mapIndexedNotNull =
+                    numbers.mapIndexedNotNull { index, value -> if (index == 0) null else value * index }
+                mapIndexedNotNull shouldBe setOf(2, 6)
+            }
+        }
+
+        val numbersMap = mapOf("key1" to 1, "key2" to 2, "key3" to 3, "key11" to 11)
+        context("mapKeys") {
+            it("Map 의 key 값들을 value 를 유지한채로 변경한다.") {
+                val mapKeys = numbersMap.mapKeys { it.key.uppercase() }
+                mapKeys shouldBe mapOf("KEY1" to 1, "KEY2" to 2, "KEY3" to 3, "KEY11" to 11)
+            }
+        }
+
+        context("mapValues") {
+            it("Map 의 key 값들을 유지한채로 value 를 변경한다.") {
+                val mapValues = numbersMap.mapValues { it.value + it.key.length }
+                mapValues shouldBe mapOf("key1" to 5, "key2" to 6, "key3" to 7, "key11" to 16)
+            }
+        }
+    }
 })
