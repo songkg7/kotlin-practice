@@ -158,6 +158,11 @@ class StreamTest : DescribeSpec({
                 val plus = numbersMap.plus("key5" to 5)
                 plus shouldBe mapOf("key1" to 1, "key2" to 2, "key3" to 3, "key11" to 11, "key5" to 5)
             }
+
+            it("operator function 이므로 + 를 사용해서 호출할 수 있다.") {
+                val plus = numbersMap + ("key5" to 5)
+                plus shouldBe mapOf("key1" to 1, "key2" to 2, "key3" to 3, "key11" to 11, "key5" to 5)
+            }
         }
 
         context("minus") {
