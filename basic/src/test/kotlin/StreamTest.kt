@@ -38,6 +38,12 @@ class StreamTest : DescribeSpec({
                 println("All string elements in upper case:")
                 somethings.filterIsInstance<String>().forEach { println(it.uppercase()) }
             }
+
+            it("java class type 을 호출해서 사용할 수 있다.") {
+                val somethings = listOf(1, 2, 3, "4")
+                val filterIsInstance = somethings.filterIsInstance(String::class.java)
+                filterIsInstance shouldBe listOf("4")
+            }
         }
 
         context("partition") {
@@ -123,5 +129,17 @@ class StreamTest : DescribeSpec({
                 mapValues shouldBe mapOf("key1" to 5, "key2" to 6, "key3" to 7, "key11" to 16)
             }
         }
+
+        context("filterKeys") {
+            it("조건에 따라 map 을 filtering 한다.") {
+                val filterKeys = numbersMap.filterKeys { it == "key1" }
+                filterKeys shouldBe mapOf("key1" to 1)
+            }
+        }
+    }
+
+    describe("mutableMap") {
+        val numbersMap = mutableMapOf("key1" to 1, "key2" to 2, "key3" to 3, "key11" to 11)
+
     }
 })
