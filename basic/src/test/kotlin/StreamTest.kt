@@ -136,6 +136,33 @@ class StreamTest : DescribeSpec({
                 filterKeys shouldBe mapOf("key1" to 1)
             }
         }
+
+        context("filterValues") {
+            TODO()
+        }
+
+        context("filterTo") {
+            TODO()
+        }
+
+        context("filterNotTo") {
+            TODO()
+        }
+
+        context("filterNot") {
+            TODO()
+        }
+
+        context("plus") {
+            it("주어진 pair 가 포함된 새로운 map 을 반환한다.") {
+                val plus = numbersMap.plus("key5" to 5)
+                plus shouldBe mapOf("key1" to 1, "key2" to 2, "key3" to 3, "key11" to 11, "key5" to 5)
+            }
+        }
+
+        context("minus") {
+            TODO()
+        }
     }
 
     describe("mutableMap") {
