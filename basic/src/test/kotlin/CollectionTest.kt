@@ -1,6 +1,8 @@
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.collections.shouldHaveSize
+import io.kotest.matchers.maps.shouldContainKey
+import io.kotest.matchers.maps.shouldHaveSize
 import io.kotest.matchers.shouldBe
 
 class CollectionTest : DescribeSpec({
@@ -272,6 +274,69 @@ class CollectionTest : DescribeSpec({
                 mutableSet.size shouldBe 4
             }
         }
+    }
 
+    describe("map") {
+        val map = mapOf(1 to "one", 2 to "two", 3 to "three")
+        it("should have size 3") {
+            map.size shouldBe 3
+        }
+        it("should contain 1") {
+            map shouldContainKey 1
+        }
+        it("should have 3 elements") {
+            map shouldHaveSize 3
+        }
+
+        context("contains") {
+            it("should contain 1") {
+                map.contains(1) shouldBe true
+            }
+            it("should contain 2") {
+                map.contains(2) shouldBe true
+            }
+            it("should contain 3") {
+                map.contains(3) shouldBe true
+            }
+            it("should not contain 4") {
+                map.contains(4) shouldBe false
+            }
+        }
+
+        context("entries") {
+            it("should iterate") {
+                val iterator = map.entries.iterator()
+                iterator.hasNext() shouldBe true
+                iterator.next() shouldBe 1 to "one"
+                iterator.hasNext() shouldBe true
+                iterator.next() shouldBe 2 to "two"
+                iterator.hasNext() shouldBe true
+                iterator.next() shouldBe 3 to "three"
+                iterator.hasNext() shouldBe false
+            }
+        }
+
+        context("isEmpty") {
+            it("should not be empty") {
+                map.isEmpty() shouldBe false
+            }
+        }
+
+        context("isNotEmpty") {
+            it("should be not empty") {
+                map.isNotEmpty() shouldBe true
+            }
+        }
+
+        context("keys") {
+            it("should iterate") {
+                val iterator = map.keys.iterator()
+                iterator.hasNext() shouldBe true
+                iterator.next() shouldBe 1
+                iterator.hasNext() shouldBe true
+                iterator.next() shouldBe 2
+                iterator.hasNext() shouldBe true
+            }
+        }
     }
 })
