@@ -10,7 +10,7 @@ plugins {
 subprojects {
     apply {
         plugin("org.jetbrains.kotlin.jvm")
-        plugin("java")
+//        plugin("java")
 //        plugin("io.spring.dependency-management")
 //        plugin("org.springframework.boot")
 //        plugin("org.jetbrains.kotlin.plugin.spring")
