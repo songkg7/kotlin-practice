@@ -1,4 +1,4 @@
-package boj2525
+package bronze.boj2525
 
 import java.time.LocalTime
 

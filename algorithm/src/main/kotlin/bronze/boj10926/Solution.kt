@@ -1,4 +1,4 @@
-package boj10926
+package bronze.boj10926
 
 fun main() {
     println("${readLine()}??!")

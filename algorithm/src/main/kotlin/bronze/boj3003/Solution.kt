@@ -1,4 +1,4 @@
-package boj3003
+package bronze.boj3003
 
 fun main() {
     val input = readLine()!!.split(" ").map { it.toInt() }
