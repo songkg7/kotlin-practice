@@ -1,4 +1,4 @@
-package bronze.boj25304
+package boj.bronze25304
 
 // 영수증
 fun main() {

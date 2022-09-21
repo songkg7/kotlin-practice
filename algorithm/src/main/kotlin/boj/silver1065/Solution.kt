@@ -1,4 +1,4 @@
-package silver.boj1065
+package boj.silver1065
 
 // 한수
 fun main() {

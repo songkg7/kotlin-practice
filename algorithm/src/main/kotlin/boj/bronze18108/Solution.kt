@@ -1,3 +1,3 @@
-package bronze.boj18108
+package boj.bronze18108
 
 fun main() = println(readLine()!!.toInt() - 543)
