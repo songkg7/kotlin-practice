@@ -9,17 +9,9 @@ var n = 0
 fun recursion(s: String, l: Int, r: Int): Int {
     n += 1
     return when {
-        l >= r -> {
-            1
-        }
-
-        s[l] != s[r] -> {
-            0
-        }
-
-        else -> {
-            recursion(s, l + 1, r - 1)
-        }
+        l >= r -> 1
+        s[l] != s[r] -> 0
+        else -> recursion(s, l + 1, r - 1)
     }
 }
 
