@@ -2,7 +2,8 @@ package boj.silver24060
 
 // 알고리즘 수업 - 병합 정렬 1
 // https://www.acmicpc.net/problem/24060
-var count = 0
+var saveCount = 0
+var targetCount = 0
 fun mergeSort(list: MutableList<Int>, left: Int, right: Int) {
     if (left >= right) return
 
@@ -43,27 +44,21 @@ fun merge(list: MutableList<Int>, left: Int, mid: Int, right: Int) {
     // 결과를 list 에 저장
     for (e in sortedList.indices) {
         list[left + e] = sortedList[e]
-        count++
-        println("$list <- ${sortedList[e]} : $e 번 index")
+        saveCount++
+        if (saveCount == targetCount) {
+            println(sortedList[e])
+        }
     }
 }
 
 fun main() {
-    val br = System.`in`.bufferedReader()
-    val bw = System.out.bufferedWriter()
-
-    val split = br.readLine().split(" ").map { it.toInt() }
+    val split = readLine()!!.split(" ").map { it.toInt() }
     val size = split[0]
-    val saveCount = split[1]
+    targetCount = split[1]
 
-    val list = br.readLine().split(" ").map { it.toInt() }.toMutableList()
+    val list = readLine()!!.split(" ").map { it.toInt() }.toMutableList()
     mergeSort(list, 0, size - 1)
-
-    bw.write("$list")
-    bw.newLine()
-
-    bw.flush()
-
-    br.close()
-    bw.close()
+    if (saveCount < targetCount) {
+        println(-1)
+    }
 }
