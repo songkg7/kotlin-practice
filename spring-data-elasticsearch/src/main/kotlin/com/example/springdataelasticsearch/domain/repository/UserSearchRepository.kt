@@ -5,5 +5,4 @@ import org.springframework.data.elasticsearch.repository.ElasticsearchRepository
 
 interface UserSearchRepository : ElasticsearchRepository<User, Long> {
 
-
 }
