@@ -23,6 +23,8 @@ services:
       - esnet
 
   elasticsearch02:
+    depends_on:
+      - elasticsearch01
     image: docker.elastic.co/elasticsearch/elasticsearch:7.7.1
     container_name: es02
     environment:
@@ -43,6 +45,8 @@ services:
       - esnet
 
   elasticsearch03:
+    depends_on:
+      - elasticsearch01
     image: docker.elastic.co/elasticsearch/elasticsearch:7.7.1
     container_name: es03
     environment:
