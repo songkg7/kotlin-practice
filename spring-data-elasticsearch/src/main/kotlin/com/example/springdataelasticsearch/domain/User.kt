@@ -5,12 +5,13 @@ import org.springframework.data.elasticsearch.annotations.Document
 import org.springframework.data.elasticsearch.annotations.Field
 import org.springframework.data.elasticsearch.annotations.FieldType
 import java.time.LocalDateTime
+import kotlin.random.Random
 
 @Document(indexName = "users")
 class User {
 
     @Id
-    var id: Long? = null
+    var id: Long = Random.nextLong()
 
     var name: String? = null
 

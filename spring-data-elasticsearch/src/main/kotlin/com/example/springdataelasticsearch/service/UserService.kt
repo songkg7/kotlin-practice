@@ -11,8 +11,8 @@ class UserService(val userSearchRepository: UserSearchRepository) {
         return userSearchRepository.findAll().toList()
     }
 
-    fun saveUser(user: User) {
-        userSearchRepository.save(user)
+    fun saveUser(user: User): User {
+        return userSearchRepository.save(user)
     }
 
 }
