@@ -4,7 +4,6 @@ import com.example.springdataelasticsearch.domain.User
 import com.example.springdataelasticsearch.service.UserService
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
-import java.util.*
 
 @RestController
 class UserController(val userService: UserService) {
@@ -18,4 +17,7 @@ class UserController(val userService: UserService) {
 
     @GetMapping("/users")
     fun getUsers() = userService.searchAll()
+
+    @DeleteMapping("/users")
+    fun deleteAll() = userService.deleteAll()
 }

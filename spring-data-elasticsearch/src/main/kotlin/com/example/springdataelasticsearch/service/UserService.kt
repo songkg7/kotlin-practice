@@ -15,4 +15,14 @@ class UserService(val userSearchRepository: UserSearchRepository) {
         return userSearchRepository.save(user)
     }
 
+    fun updateUser(user: User): User {
+        return userSearchRepository.save(user)
+    }
+
+    fun deleteUser(id: Long) {
+        userSearchRepository.deleteById(id)
+    }
+
+    fun deleteAll() = userSearchRepository.deleteAll()
+
 }

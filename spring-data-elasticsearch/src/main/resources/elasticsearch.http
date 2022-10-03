@@ -12,3 +12,7 @@ Accept: application/json
   "age": 20,
   "email": "test@email.com"
 }
+
+### delete all
+DELETE http://localhost:8080/users
+Accept: application/json
