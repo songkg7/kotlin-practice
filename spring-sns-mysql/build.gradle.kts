@@ -30,8 +30,11 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
     testImplementation("io.kotest:kotest-runner-junit5:5.5.0")
     testImplementation("io.kotest:kotest-assertions-core:5.5.0")
+    testImplementation("io.kotest:kotest-extensions-spring:5.5.0")
+    testImplementation("io.mockk:mockk:1.13.2")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.0")
+    testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
 tasks.getByName<Test>("test") {
