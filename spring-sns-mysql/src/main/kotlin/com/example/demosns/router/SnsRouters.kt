@@ -11,10 +11,10 @@ class SnsRouters {
 
     @Bean
     fun memberRouter() = router {
+        GET("/ping") {
+            ServerResponse.ok().body(Mono.just("pong"), String::class.java)
+        }
         "/member".nest {
-            GET("/test") {
-                ServerResponse.ok().body(Mono.just("test"), String::class.java)
-            }
             GET("/list") {
                 TODO()
             }
