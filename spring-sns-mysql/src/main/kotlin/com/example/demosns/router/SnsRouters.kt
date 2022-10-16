@@ -3,16 +3,16 @@ package com.example.demosns.router
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.reactive.function.server.ServerResponse
-import org.springframework.web.reactive.function.server.router
-import reactor.core.publisher.Mono
+import org.springframework.web.reactive.function.server.bodyValueAndAwait
+import org.springframework.web.reactive.function.server.coRouter
 
 @Configuration
 class SnsRouters {
 
     @Bean
-    fun memberRouter() = router {
+    fun memberRouter() = coRouter {
         GET("/ping") {
-            ServerResponse.ok().body(Mono.just("pong"), String::class.java)
+            ServerResponse.ok().bodyValueAndAwait("pong")
         }
         "/member".nest {
             GET("/list") {
@@ -30,6 +30,10 @@ class SnsRouters {
             DELETE("/{id}") {
                 TODO()
             }
+        }
+
+        onError<Exception> { e, _ ->
+            ServerResponse.badRequest().bodyValueAndAwait(e.message ?: "error")
         }
     }
 
