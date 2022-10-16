@@ -26,6 +26,7 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-validation")
     implementation("mysql:mysql-connector-java")
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
     testImplementation("io.kotest:kotest-runner-junit5:5.5.0")
     testImplementation("io.kotest:kotest-assertions-core:5.5.0")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
