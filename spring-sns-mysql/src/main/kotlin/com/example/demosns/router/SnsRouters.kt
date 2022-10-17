@@ -18,15 +18,10 @@ class SnsRouters(
             ServerResponse.ok().bodyValueAndAwait("pong")
         }
         POST("/member", memberHandler::create)
+        GET("/members", memberHandler::findAll)
 
         "/member".nest {
-            GET("/list") {
-                TODO()
-            }
             GET("/{id}") {
-                TODO()
-            }
-            POST("/join") {
                 TODO()
             }
             PUT("/{id}") {
