@@ -1,5 +1,6 @@
 package com.example.demosns.router
 
+import com.example.demosns.domain.handler.MemberHandler
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.reactive.function.server.ServerResponse
@@ -7,13 +8,17 @@ import org.springframework.web.reactive.function.server.bodyValueAndAwait
 import org.springframework.web.reactive.function.server.coRouter
 
 @Configuration
-class SnsRouters {
+class SnsRouters(
+    val memberHandler: MemberHandler,
+) {
 
     @Bean
     fun memberRouter() = coRouter {
         GET("/ping") {
             ServerResponse.ok().bodyValueAndAwait("pong")
         }
+        POST("/member", memberHandler::create)
+
         "/member".nest {
             GET("/list") {
                 TODO()
