@@ -1,4 +1,4 @@
-package com.example.demosns.domain.handler
+package com.example.demosns.handler
 
 import com.example.demosns.domain.member.dto.RegistMemberCommand
 import com.example.demosns.domain.member.service.MemberWriteService
