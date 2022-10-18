@@ -19,4 +19,10 @@ class MemberHandler(
         val members = memberWriteService.findAll()
         return ServerResponse.ok().bodyValueAndAwait(members)
     }
+
+    suspend fun findById(request: ServerRequest): ServerResponse {
+        val id = request.pathVariable("id").toLong()
+        val member = memberWriteService.findById(id)
+        return ServerResponse.ok().bodyValueAndAwait(member)
+    }
 }

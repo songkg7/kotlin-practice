@@ -20,4 +20,6 @@ class MemberWriteService(val memberRepository: MemberRepository) {
 
     fun findAll(): List<Member> = memberRepository.findAll()
 
+    fun findById(id: Long): Member = memberRepository.findById(id).orElseThrow()
+
 }

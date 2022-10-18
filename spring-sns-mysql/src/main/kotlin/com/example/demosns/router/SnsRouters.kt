@@ -21,9 +21,7 @@ class SnsRouters(
         GET("/members", memberHandler::findAll)
 
         "/member".nest {
-            GET("/{id}") {
-                TODO()
-            }
+            GET("/{id}", memberHandler::findById)
             PUT("/{id}") {
                 TODO()
             }
