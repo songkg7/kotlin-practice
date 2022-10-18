@@ -35,6 +35,9 @@ dependencies {
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.0")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("com.navercorp.fixturemonkey:fixture-monkey-kotlin:0.3.5")
+    testImplementation("com.navercorp.fixturemonkey:fixture-monkey-starter:0.3.5")
+    testImplementation("io.github.benas:random-beans:4.3.0")
 }
 
 tasks.getByName<Test>("test") {

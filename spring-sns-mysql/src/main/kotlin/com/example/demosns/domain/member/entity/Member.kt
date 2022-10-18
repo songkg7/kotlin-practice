@@ -15,4 +15,8 @@ class Member(
     val birthday: LocalDate,
     var email: String,
     val createAt: LocalDateTime = LocalDateTime.now(),
-)
+) {
+    fun changeNickname(nickname: String) {
+        this.nickname = nickname
+    }
+}

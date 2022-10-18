@@ -7,7 +7,7 @@ import java.time.LocalDate
 
 internal class MemberTest : DescribeSpec({
 
-    describe("Member") {
+    describe("create") {
         it("기본 생성 검증") {
             val member = Member(
                 nickname = "haril",
@@ -25,4 +25,17 @@ internal class MemberTest : DescribeSpec({
         }
     }
 
+    describe("update") {
+        it("changeNickname 으로 nickname 을 변경할 수 있다.") {
+            val member = Member(
+                nickname = "haril",
+                birthday = LocalDate.of(1994, 7, 7),
+                email = "test@email.com",
+            ).apply {
+                changeNickname("haril2")
+            }
+
+            member.nickname shouldBe "haril2"
+        }
+    }
 })
