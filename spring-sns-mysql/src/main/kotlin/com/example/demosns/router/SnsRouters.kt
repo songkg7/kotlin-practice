@@ -1,6 +1,6 @@
 package com.example.demosns.router
 
-import com.example.demosns.handler.MemberHandler
+import com.example.demosns.domain.member.handler.MemberHandler
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.reactive.function.server.ServerResponse
