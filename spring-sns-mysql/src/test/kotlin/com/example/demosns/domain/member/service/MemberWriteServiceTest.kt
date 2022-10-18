@@ -1,6 +1,6 @@
 package com.example.demosns.domain.member.service
 
-import com.example.demosns.domain.member.dto.RegistMemberCommand
+import com.example.demosns.domain.member.dto.CreateMemberCommand
 import com.example.demosns.domain.member.repository.MemberRepository
 import io.kotest.core.spec.style.DescribeSpec
 import io.mockk.every
@@ -16,7 +16,7 @@ internal class MemberWriteServiceTest : DescribeSpec({
     describe("create") {
         it("회원 생성") {
             // given
-            val command = RegistMemberCommand(
+            val command = CreateMemberCommand(
                 nickname = "haril",
                 birthday = LocalDate.of(1994, 7, 7),
                 email = "test@email.com"

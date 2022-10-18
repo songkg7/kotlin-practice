@@ -5,7 +5,7 @@ import java.time.LocalDate
 import javax.validation.constraints.Email
 import javax.validation.constraints.Size
 
-data class RegistMemberCommand(
+data class CreateMemberCommand(
     @Size(max = 10)
     val nickname: String,
     val birthday: LocalDate,

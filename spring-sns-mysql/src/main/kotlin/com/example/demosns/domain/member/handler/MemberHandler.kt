@@ -1,6 +1,6 @@
 package com.example.demosns.domain.member.handler
 
-import com.example.demosns.domain.member.dto.RegistMemberCommand
+import com.example.demosns.domain.member.dto.CreateMemberCommand
 import com.example.demosns.domain.member.service.MemberReadService
 import com.example.demosns.domain.member.service.MemberWriteService
 import org.springframework.stereotype.Component
@@ -12,7 +12,7 @@ class MemberHandler(
     private val memberReadService: MemberReadService,
 ) {
     suspend fun create(request: ServerRequest): ServerResponse {
-        val body = request.awaitBody<RegistMemberCommand>()
+        val body = request.awaitBody<CreateMemberCommand>()
         memberWriteService.create(body)
         return ServerResponse.created(request.uri()).buildAndAwait()
     }

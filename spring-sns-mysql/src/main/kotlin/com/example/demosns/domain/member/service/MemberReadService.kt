@@ -1,6 +1,6 @@
 package com.example.demosns.domain.member.service
 
-import com.example.demosns.domain.member.entity.Member
+import com.example.demosns.domain.member.dto.MemberDto
 import com.example.demosns.domain.member.repository.MemberRepository
 import org.springframework.stereotype.Service
 
@@ -8,7 +8,13 @@ import org.springframework.stereotype.Service
 class MemberReadService(
     private val memberRepository: MemberRepository,
 ) {
-    fun findAll(): List<Member> = memberRepository.findAll()
+    fun findAll(): List<MemberDto> {
+        val members = memberRepository.findAll()
+        return members.map { MemberDto.of(it) }
+    }
 
-    fun findById(id: Long): Member = memberRepository.findById(id).orElseThrow()
+    fun findById(id: Long): MemberDto {
+        val member = memberRepository.findById(id).orElseThrow()
+        return MemberDto.of(member)
+    }
 }
