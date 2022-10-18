@@ -6,7 +6,7 @@ import com.example.demosns.domain.member.repository.MemberRepository
 import org.springframework.stereotype.Service
 
 @Service
-class MemberWriteService(val memberRepository: MemberRepository) {
+class MemberWriteService(private val memberRepository: MemberRepository) {
 
     fun create(command: RegistMemberCommand) {
         Member(
@@ -17,9 +17,4 @@ class MemberWriteService(val memberRepository: MemberRepository) {
             memberRepository.save(it)
         }
     }
-
-    fun findAll(): List<Member> = memberRepository.findAll()
-
-    fun findById(id: Long): Member = memberRepository.findById(id).orElseThrow()
-
 }
