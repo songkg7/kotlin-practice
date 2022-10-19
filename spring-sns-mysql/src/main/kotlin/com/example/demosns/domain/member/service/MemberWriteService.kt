@@ -17,4 +17,11 @@ class MemberWriteService(private val memberRepository: MemberRepository) {
             memberRepository.save(it)
         }
     }
+
+    fun changeNickname(id: Long, nickname: String) {
+        memberRepository.findById(id).orElseThrow().let {
+            it.changeNickname(nickname)
+            memberRepository.save(it)
+        }
+    }
 }

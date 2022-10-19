@@ -1,6 +1,7 @@
 package com.example.demosns.domain.member.handler
 
 import com.example.demosns.domain.member.dto.CreateMemberCommand
+import com.example.demosns.domain.member.dto.UpdateMemberCommand
 import com.example.demosns.domain.member.service.MemberReadService
 import com.example.demosns.domain.member.service.MemberWriteService
 import org.springframework.stereotype.Component
@@ -26,5 +27,12 @@ class MemberHandler(
         val id = request.pathVariable("id").toLong()
         val member = memberReadService.findById(id)
         return ServerResponse.ok().bodyValueAndAwait(member)
+    }
+
+    suspend fun update(request: ServerRequest): ServerResponse {
+        val id = request.pathVariable("id").toLong()
+        val body = request.awaitBody<UpdateMemberCommand>()
+        memberWriteService.changeNickname(id, body.nickname)
+        return ServerResponse.ok().buildAndAwait()
     }
 }
