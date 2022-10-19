@@ -1,0 +1,9 @@
+### Send POST request with json body
+POST http://localhost:8080/member
+Content-Type: application/json
+
+{
+  "nickname": "John Doe",
+  "email": "test@email.com",
+  "birthday": "1990-01-01"
+}
