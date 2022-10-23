@@ -1,6 +1,7 @@
 package com.example.demosns.domain.member.service
 
 import com.example.demosns.domain.member.dto.CreateMemberCommand
+import com.example.demosns.domain.member.repository.MemberNicknameHistoryRepository
 import com.example.demosns.domain.member.repository.MemberRepository
 import io.kotest.core.spec.style.DescribeSpec
 import io.mockk.every
@@ -11,7 +12,8 @@ import java.time.LocalDate
 internal class MemberWriteServiceTest : DescribeSpec({
 
     val memberRepository = mockk<MemberRepository>()
-    val memberWriteService = MemberWriteService(memberRepository)
+    val memberHistoryRepository = mockk<MemberNicknameHistoryRepository>()
+    val memberWriteService = MemberWriteService(memberRepository, memberHistoryRepository)
 
     describe("create") {
         it("회원 생성") {

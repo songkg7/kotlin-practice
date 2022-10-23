@@ -25,4 +25,12 @@ class Member(
     fun changeNickname(nickname: String) {
         this.nickname = nickname
     }
+
+    fun toHistory(): MemberNicknameHistory {
+        return MemberNicknameHistory(
+            memberId = this.id!!,
+            nickname = this.nickname,
+            createdAt = LocalDateTime.now(),
+        )
+    }
 }
