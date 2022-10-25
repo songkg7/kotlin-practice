@@ -37,6 +37,7 @@ class SnsRouters(
 
     @Bean
     fun followRouter() = coRouter {
+        GET("/follow/members/{fromMemberId}", followHandler::findFollowsById)
         POST("/follow/{fromMemberId}/{toMemberId}", followHandler::create)
 
         onError<Exception> { e, _ ->

@@ -17,4 +17,9 @@ class MemberReadService(
         val member = memberRepository.findById(id).orElseThrow()
         return MemberDto.of(member)
     }
+
+    fun getMembers(memberIds: List<Long>): List<MemberDto> {
+        val members = memberRepository.findAllById(memberIds)
+        return members.map { MemberDto.of(it) }
+    }
 }
