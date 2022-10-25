@@ -1,4 +1,4 @@
-package com.example.demosns.domain.member.handler
+package com.example.demosns.application.handler
 
 import com.example.demosns.domain.member.dto.CreateMemberCommand
 import com.example.demosns.domain.member.dto.UpdateMemberCommand

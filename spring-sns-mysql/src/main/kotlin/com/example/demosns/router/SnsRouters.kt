@@ -1,6 +1,7 @@
 package com.example.demosns.router
 
-import com.example.demosns.domain.member.handler.MemberHandler
+import com.example.demosns.application.handler.FollowHandler
+import com.example.demosns.application.handler.MemberHandler
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.web.reactive.function.server.ServerResponse
@@ -9,7 +10,8 @@ import org.springframework.web.reactive.function.server.coRouter
 
 @Configuration
 class SnsRouters(
-    val memberHandler: MemberHandler,
+    private val memberHandler: MemberHandler,
+    private val followHandler: FollowHandler
 ) {
 
     @Bean
@@ -33,4 +35,12 @@ class SnsRouters(
         }
     }
 
+    @Bean
+    fun followRouter() = coRouter {
+        POST("/follow/{fromMemberId}/{toMemberId}", followHandler::create)
+
+        onError<Exception> { e, _ ->
+            ServerResponse.badRequest().bodyValueAndAwait(e.message ?: "error")
+        }
+    }
 }

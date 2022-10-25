@@ -1,6 +1,8 @@
 package com.example.demosns.router
 
-import com.example.demosns.domain.member.handler.MemberHandler
+import com.example.demosns.application.handler.FollowHandler
+import com.example.demosns.application.handler.MemberHandler
+import com.example.demosns.application.usecase.CreateFollowMemberUsecase
 import com.example.demosns.domain.member.service.MemberReadService
 import com.example.demosns.domain.member.service.MemberWriteService
 import io.kotest.core.spec.style.DescribeSpec
@@ -15,6 +17,7 @@ internal class SnsRoutersTest : DescribeSpec() {
 
     private var memberWriteService = mockk<MemberWriteService>()
     private var memberReadService = mockk<MemberReadService>()
+    private var createFollowMemberUsecase = mockk<CreateFollowMemberUsecase>()
     private lateinit var webTestClient: WebTestClient
 
     init {
@@ -24,7 +27,8 @@ internal class SnsRoutersTest : DescribeSpec() {
                     MemberHandler(
                         memberWriteService,
                         memberReadService
-                    )
+                    ),
+                    FollowHandler(createFollowMemberUsecase)
                 ).memberRouter()
             ).build()
         }
