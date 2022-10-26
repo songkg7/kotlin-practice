@@ -49,6 +49,7 @@ class SnsRouters(
 
     @Bean
     fun postRouter() = coRouter {
+        GET("/post/daily", postHandler::getDailyPostCount)
         POST("/post", postHandler::createPost)
 
         onError<Exception> { e, _ ->
