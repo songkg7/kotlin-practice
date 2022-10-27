@@ -46,7 +46,7 @@ class PostBulkInsertTest @Autowired constructor(
                 fixture.giveMeBuilder<Post>()
                     .set(Post::id, id)
                     .set(Post::memberId, 1L)
-                    .set(Post::createDate, LocalDate.of(2022, 10, 1 randomly 30))
+                    .set(Post::createDate, LocalDate.of(2022, 10, 1 between 30))
                     .sample()
             }
             .toList()
@@ -54,7 +54,7 @@ class PostBulkInsertTest @Autowired constructor(
         postJdbcRepository.bulkInsert(posts)
     }
 
-    private infix fun Int.randomly(to: Int): Int {
+    private infix fun Int.between(to: Int): Int {
         return Math.random().toInt() * (to - this) + this
     }
 
