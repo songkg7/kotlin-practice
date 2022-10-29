@@ -41,7 +41,7 @@ class PostBulkInsertTest @Autowired constructor(
     @DisplayName("bulk insert with jdbc about 60 seconds")
     fun jdbcBulkInsert() {
         val posts = generateSequence(1L) { it + 1 }
-            .take(100_0000)
+            .take(300_0000)
             .map { id ->
                 fixture.giveMeBuilder<Post>()
                     .set(Post::id, id)
