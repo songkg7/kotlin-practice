@@ -4,7 +4,10 @@ plugins {
     kotlin("plugin.jpa") version "1.7.20"
     id("org.springframework.boot") version "2.7.3"
     id("io.spring.dependency-management") version "1.0.13.RELEASE"
+    id("org.asciidoctor.jvm.convert") version "3.3.2"
 }
+
+val asciidoctorExtentions by configurations.creating
 
 allOpen {
     annotation("javax.persistence.Entity")
@@ -21,7 +24,25 @@ repositories {
     mavenCentral()
 }
 
+tasks.asciidoctor {
+    dependsOn(tasks.test)
+    configurations(asciidoctorExtentions.name)
+    baseDirFollowsSourceDir()
+    doLast {
+        copy {
+            from(outputDir)
+            into("src/main/resources/static/docs")
+        }
+    }
+}
+
+tasks.build {
+    dependsOn(tasks.asciidoctor)
+}
+
 dependencies {
+    asciidoctorExtentions("org.springframework.restdocs:spring-restdocs-asciidoctor")
+
     implementation("org.springframework.boot:spring-boot-starter-webflux")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-validation")
@@ -36,6 +57,7 @@ dependencies {
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.0")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    testImplementation("org.springframework.restdocs:spring-restdocs-webtestclient")
     testImplementation("com.navercorp.fixturemonkey:fixture-monkey-kotlin:0.4.2")
     testImplementation("com.navercorp.fixturemonkey:fixture-monkey-starter:0.4.2")
 }
