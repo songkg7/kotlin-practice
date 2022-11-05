@@ -25,6 +25,7 @@ repositories {
 }
 
 tasks.asciidoctor {
+    inputs.dir(snippetsDir)
     dependsOn(tasks.test)
     configurations(asciidoctorExtentions.name)
     baseDirFollowsSourceDir()
@@ -32,6 +33,11 @@ tasks.asciidoctor {
         copy {
             from(outputDir)
             into("src/main/resources/static/docs")
+        }
+    }
+    doFirst { // 2
+        delete {
+            file("src/main/resources/static/docs")
         }
     }
 }
@@ -61,7 +67,9 @@ dependencies {
     testImplementation("com.navercorp.fixturemonkey:fixture-monkey-kotlin:0.4.2")
     testImplementation("com.navercorp.fixturemonkey:fixture-monkey-starter:0.4.2")
 }
+val snippetsDir by extra { file("build/generated-snippets") }
 
 tasks.getByName<Test>("test") {
     useJUnitPlatform()
+    outputs.dir(snippetsDir)
 }
