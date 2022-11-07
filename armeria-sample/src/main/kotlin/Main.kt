@@ -1,5 +1,6 @@
-import com.linecorp.armeria.common.HttpResponse
 import com.linecorp.armeria.server.Server
+import com.linecorp.armeria.server.docs.DocService
+import domain.BoardService
 import mu.KotlinLogging
 
 private val logger = KotlinLogging.logger {}
@@ -19,6 +20,7 @@ private fun Server.startServer() {
         "Server has been started. Serving dummy Service at http://127.0.0.1:{}",
         activeLocalPort()
     )
+    logger.info("Serving DocService at http://127.0.0.1:{}/docs", activeLocalPort())
 }
 
 private fun newServer(httpPort: Int = 8080, httpsPort: Int = 8443): Server {
@@ -26,8 +28,15 @@ private fun newServer(httpPort: Int = 8080, httpsPort: Int = 8443): Server {
         .http(httpPort)
         .https(httpsPort)
         .tlsSelfSigned()
-        .service("/") { _, _ -> HttpResponse.of("Hello, Armeria!") }
+        .annotatedService(BoardService())
+        .serviceUnder("/docs", DocService())
         .build()
 }
 
-
+private fun docService(): DocService {
+    return DocService.builder()
+        .exampleRequests(BoardService::class.java,
+            "createBoard",
+            "{\"title\": \"title\", \"content\": \"Hello, Armeria!\"}")
+        .build()
+}
