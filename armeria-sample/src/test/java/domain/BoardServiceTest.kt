@@ -3,6 +3,8 @@ package domain
 import com.linecorp.armeria.common.HttpStatus
 import com.navercorp.fixturemonkey.LabMonkey
 import com.navercorp.fixturemonkey.kotlin.KotlinPlugin
+import dto.BoardDeleteRequest
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe
 
@@ -13,6 +15,7 @@ private val labMonkey = LabMonkey.labMonkeyBuilder()
 class BoardServiceTest : DescribeSpec({
 
     val boardService = BoardService()
+    val board = labMonkey.giveMeOne(Board::class.java)
 
     describe("BoardService") {
         context("저장된 Board 가 없을 때") {
@@ -25,7 +28,6 @@ class BoardServiceTest : DescribeSpec({
         }
 
         context("Board 를 저장했을 때") {
-            val board = labMonkey.giveMeOne(Board::class.java)
             it("성공하면 201 CREATED 가 반환된다.") {
                 val response = boardService.createBoard(board)
 
@@ -52,6 +54,40 @@ class BoardServiceTest : DescribeSpec({
 
             it("전체 board 를 조회할 수 있다.") {
                 val response = boardService.getBoards()
+
+                val result = response.aggregate().join()
+
+                result.status() shouldBe HttpStatus.OK
+            }
+        }
+
+        context("Board 를 삭제하고 싶을 때") {
+            it("입력한 id 가 존재하지 않으면 IllegalStateException 이 발생한다.") {
+                val request = BoardDeleteRequest(
+                    id = 100L,
+                    writer = "writer"
+                )
+
+                val exception = shouldThrow<IllegalStateException> {
+                    boardService.deleteBoards(request)
+                }
+
+                exception.message shouldBe "Board not found"
+            }
+
+            it("입력한 id 와 writer 가 일치하지 않는다면 삭제되지 않는다.") {
+                val request = BoardDeleteRequest(board.id, "not matched writer")
+
+                val exception = shouldThrow<IllegalStateException> {
+                    boardService.deleteBoards(request)
+                }
+
+                exception.message shouldBe "Board writer is not matched"
+            }
+
+            it("입력한 id 와 writer 가 저장되어 board 와 일치하면 삭제할 수 있다.") {
+                val boardDeleteRequest = BoardDeleteRequest(board.id, board.writer)
+                val response = boardService.deleteBoards(boardDeleteRequest)
 
                 val result = response.aggregate().join()
 

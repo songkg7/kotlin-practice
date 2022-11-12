@@ -11,4 +11,6 @@ data class Board(
 
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     val createdAt: LocalDateTime = LocalDateTime.now(),
-)
+) {
+    infix fun hasOwnerShip(owner: String) = writer == owner
+}
