@@ -1,4 +1,4 @@
-package dto
+package input
 
 data class BoardDeleteRequest(
     val id: Long,

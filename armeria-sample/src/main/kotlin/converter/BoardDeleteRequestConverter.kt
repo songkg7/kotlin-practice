@@ -4,7 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper
 import com.linecorp.armeria.common.AggregatedHttpRequest
 import com.linecorp.armeria.server.ServiceRequestContext
 import com.linecorp.armeria.server.annotation.RequestConverterFunction
-import dto.BoardDeleteRequest
+import input.BoardDeleteRequest
 import java.lang.reflect.ParameterizedType
 
 private val mapper = ObjectMapper()

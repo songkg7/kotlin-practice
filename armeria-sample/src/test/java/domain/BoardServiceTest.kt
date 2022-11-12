@@ -3,7 +3,7 @@ package domain
 import com.linecorp.armeria.common.HttpStatus
 import com.navercorp.fixturemonkey.LabMonkey
 import com.navercorp.fixturemonkey.kotlin.KotlinPlugin
-import dto.BoardDeleteRequest
+import input.BoardDeleteRequest
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.DescribeSpec
 import io.kotest.matchers.shouldBe

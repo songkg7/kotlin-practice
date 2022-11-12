@@ -6,8 +6,8 @@ import com.linecorp.armeria.common.MediaType
 import com.linecorp.armeria.server.annotation.*
 import converter.BoardDeleteRequestConverter
 import converter.BoardPostRequestConverter
-import dto.BoardDeleteRequest
 import handler.GlobalExceptionHandler
+import input.BoardDeleteRequest
 
 @ExceptionHandler(GlobalExceptionHandler::class)
 class BoardService(
@@ -17,7 +17,7 @@ class BoardService(
     @Post("/boards")
     @RequestConverter(BoardPostRequestConverter::class)
     fun createBoard(board: Board): HttpResponse {
-        if (isExist(board.id)) {
+        mutableBoards[board.id]?.let {
             return HttpResponse.of(HttpStatus.CONFLICT)
         }
         mutableBoards[board.id] = board
