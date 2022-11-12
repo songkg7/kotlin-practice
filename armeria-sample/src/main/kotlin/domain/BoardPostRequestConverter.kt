@@ -24,8 +24,10 @@ class BoardPostRequestConverter: RequestConverterFunction {
         val jsonNode = mapper.readTree(content)
         val title = jsonNode.get("title").asText()
         val contents = jsonNode.get("content").asText()
+        val writer = jsonNode.get("writer").asText()
+        val id = jsonNode.get("id").asLong()
 
-        return Board(1, title, contents, "writer")
+        return Board(id, title, contents, writer)
     }
 }
 

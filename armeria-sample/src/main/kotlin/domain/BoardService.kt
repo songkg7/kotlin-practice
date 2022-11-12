@@ -15,8 +15,11 @@ class BoardService(
     @Post("/boards")
     @RequestConverter(BoardPostRequestConverter::class)
     fun createBoard(board: Board): HttpResponse {
+        if (mutableBoards.containsKey(board.id)) {
+            return HttpResponse.of(HttpStatus.CONFLICT)
+        }
         mutableBoards[board.id] = board
-        return HttpResponse.ofJson(board)
+        return HttpResponse.ofJson(HttpStatus.CREATED, board)
     }
 
     @Get("/boards/:id")

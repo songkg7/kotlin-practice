@@ -26,12 +26,20 @@ class BoardServiceTest : DescribeSpec({
 
         context("Board 를 저장했을 때") {
             val board = labMonkey.giveMeOne(Board::class.java)
-            it("성공하면 200 이 반환된다.") {
+            it("성공하면 201 CREATED 가 반환된다.") {
                 val response = boardService.createBoard(board)
 
                 val result = response.aggregate().join()
 
-                result.status() shouldBe HttpStatus.OK
+                result.status() shouldBe HttpStatus.CREATED
+            }
+
+            it("같은 id 가 이미 존재하면 409 CONFLICT 가 반환된다.") {
+                val response = boardService.createBoard(board)
+
+                val result = response.aggregate().join()
+
+                result.status() shouldBe HttpStatus.CONFLICT
             }
 
             it("저장된 board 를 id 로 조회할 수 있다.") {
