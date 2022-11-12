@@ -53,7 +53,7 @@ class BoardService(
         check(isExist(request.id)) { "Board not found" }
 
         val board = mutableBoards[request.id]!!
-        check(board hasOwnerShip request.writer) { "Board writer is not matched" }
+        check(request.writer hasOwnerShip board) { "Board writer is not matched" }
 
         mutableBoards.remove(request.id)
         return HttpResponse.of(
