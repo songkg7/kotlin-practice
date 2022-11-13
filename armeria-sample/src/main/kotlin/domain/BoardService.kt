@@ -14,6 +14,8 @@ class BoardService(
     private val mutableBoards: MutableMap<Long, Board> = mutableMapOf(),
 ) {
 
+    private val isExist = mutableBoards::containsKey
+
     @Post("/boards")
     @RequestConverter(BoardPostRequestConverter::class)
     fun createBoard(board: Board): HttpResponse {
@@ -63,5 +65,14 @@ class BoardService(
         )
     }
 
-    private val isExist = mutableBoards::containsKey
+    @Put("/boards/:id")
+    fun updateBoard(@Param("id") id: Long, @RequestObject board: Board): HttpResponse {
+        check(isExist(id)) { "Board not found" }
+        val existsBoard = mutableBoards[id]!!
+        check(board.writer hasOwnerShip existsBoard) { "Board writer is not matched" }
+
+        mutableBoards[id] = board
+        return HttpResponse.ofJson(board)
+    }
+
 }

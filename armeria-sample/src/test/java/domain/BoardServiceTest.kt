@@ -15,9 +15,9 @@ private val labMonkey = LabMonkey.labMonkeyBuilder()
 class BoardServiceTest : DescribeSpec({
 
     val boardService = BoardService()
-    val board = labMonkey.giveMeOne(Board::class.java)
 
     describe("BoardService") {
+        val board = labMonkey.giveMeOne(Board::class.java)
         context("저장된 Board 가 없을 때") {
             it("조회하면 NO_CONTENT 가 반환된다.") {
                 val response = boardService.getBoards()
@@ -93,6 +93,25 @@ class BoardServiceTest : DescribeSpec({
 
                 result.status() shouldBe HttpStatus.OK
             }
+        }
+    }
+
+    describe("update") {
+        val board = labMonkey.giveMeOne(Board::class.java)
+        boardService.createBoard(board)
+
+        it("writer 와 id 가 일치한다면 board 를 업데이트할 수 있다.") {
+            val updateBoard = Board(
+                id = board.id,
+                title = "updated title",
+                content = "updated content",
+                writer = board.writer
+            )
+
+            val response = boardService.updateBoard(board.id, updateBoard)
+            val result = response.aggregate().join()
+
+            result.status() shouldBe HttpStatus.OK
         }
     }
 })
