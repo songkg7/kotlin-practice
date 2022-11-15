@@ -29,7 +29,7 @@ private fun newServer(httpPort: Int = 8080, httpsPort: Int = 8443): Server {
         .https(httpsPort)
         .tlsSelfSigned()
         .annotatedService(BoardService())
-        .serviceUnder("/docs", DocService())
+        .serviceUnder("/docs", docService())
         .build()
 }
 
