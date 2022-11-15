@@ -7,6 +7,7 @@ version = "unspecified"
 java.sourceCompatibility = JavaVersion.VERSION_17
 
 dependencies {
+    implementation("com.google.guava:guava:31.1-jre")
     implementation("com.linecorp.armeria:armeria:1.20.2")
     implementation("com.linecorp.armeria:armeria-kotlin:1.20.2")
     implementation("ch.qos.logback:logback-classic:1.4.4")
