@@ -17,6 +17,10 @@ tasks.getByName<Test>("test") {
 
 dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+    implementation("com.spotify:completable-futures:0.3.5")
+    implementation("com.google.guava:guava:31.1-jre")
+    implementation("org.jctools:jctools-core:4.0.1")
+
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.0")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.9.0")
     testImplementation("org.assertj:assertj-core:3.23.1")
