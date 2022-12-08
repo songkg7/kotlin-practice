@@ -1,6 +1,7 @@
 package reactor
 
 import io.kotest.core.spec.style.DescribeSpec
+import io.kotest.matchers.shouldBe
 import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 import java.util.concurrent.CompletableFuture
@@ -50,6 +51,26 @@ class ReactorTest : DescribeSpec({
     }
 
     describe("Flux") {
+        context("subscribe") {
+            val flux = Flux.just("Hello", "World")
+            it("basic") {
+                flux.subscribe { println(it) }
+            }
+            it("onNext") {
+                flux.subscribe({ println(it) }, { println(it) }, { println("complete") })
+            }
+            it("return data") {
+                val result = mutableListOf<String>()
+                flux.subscribe({ result.add(it) }, { println(it) }, { println("complete1") })
+                flux.subscribe({ result.add(it) }, { println(it) }, { println("complete2") })
+
+                println("result = $result")
+
+                result.size shouldBe 4
+                result shouldBe listOf("Hello", "World", "Hello", "World")
+            }
+        }
+
         it("just") {
             val flux = Flux.just("Hello", "World")
                 .doOnSubscribe { println("-- doOnSubscribe --") }
