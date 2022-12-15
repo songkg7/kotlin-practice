@@ -137,22 +137,6 @@ class StreamTest : DescribeSpec({
             }
         }
 
-        context("filterValues") {
-            TODO()
-        }
-
-        context("filterTo") {
-            TODO()
-        }
-
-        context("filterNotTo") {
-            TODO()
-        }
-
-        context("filterNot") {
-            TODO()
-        }
-
         context("plus") {
             it("주어진 pair 가 포함된 새로운 map 을 반환한다.") {
                 val plus = numbersMap.plus("key5" to 5)
@@ -165,9 +149,6 @@ class StreamTest : DescribeSpec({
             }
         }
 
-        context("minus") {
-            TODO()
-        }
     }
 
     describe("mutableMap") {
