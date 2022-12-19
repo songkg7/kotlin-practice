@@ -1,11 +1,11 @@
 package customgettersetter
 
 class Cards {
-    private val _cards: MutableList<customgettersetter.Card> = mutableListOf()
-    val cards: List<customgettersetter.Card>
+    private val _cards: MutableList<Card> = mutableListOf()
+    val cards: List<Card>
         get() = _cards
 
-    fun add(card: customgettersetter.Card) {
+    fun add(card: Card) {
         _cards += card
     }
 }
