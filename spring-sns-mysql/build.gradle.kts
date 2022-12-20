@@ -56,16 +56,16 @@ dependencies {
     implementation("mysql:mysql-connector-java")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
-    testImplementation("io.kotest:kotest-runner-junit5:5.5.3")
-    testImplementation("io.kotest:kotest-assertions-core:5.5.3")
+    testImplementation("io.kotest:kotest-runner-junit5:5.5.4")
+    testImplementation("io.kotest:kotest-assertions-core:5.5.4")
     testImplementation("io.kotest:kotest-extensions-spring:4.4.3")
     testImplementation("io.mockk:mockk:1.13.2")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
     testImplementation("org.junit.jupiter:junit-jupiter-api:5.9.0")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.restdocs:spring-restdocs-webtestclient")
-    testImplementation("com.navercorp.fixturemonkey:fixture-monkey-kotlin:0.4.2")
-    testImplementation("com.navercorp.fixturemonkey:fixture-monkey-starter:0.4.2")
+    testImplementation("com.navercorp.fixturemonkey:fixture-monkey-kotlin:0.4.7")
+    testImplementation("com.navercorp.fixturemonkey:fixture-monkey-starter:0.4.7")
 }
 val snippetsDir by extra { file("build/generated-snippets") }
 
