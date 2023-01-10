@@ -138,4 +138,12 @@ class BasicTest {
     internal fun `typeAlias 사용방법`() {
         val mapOf: PersonIndex = mapOf("key" to Person("Jenna", "Mc Caysville", "1234"))
     }
+
+    @Test
+    internal fun splitInKotlin() {
+        val str = "12.345-6.A"
+        val result = str.split(".", "-")
+        println(result)
+    }
+
 }
