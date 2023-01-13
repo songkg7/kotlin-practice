@@ -36,7 +36,7 @@ class PasswordStrengthMeterTest: DescribeSpec({
             result shouldBe PasswordStrength.WEAK
         }
 
-        context("2가지 규칙만 충족하는 경우 암호는 NORMAL 이여야 한다.") {
+        context("2가지 규칙만 충족하는 경우") {
             it("길이가 8글자 이상이고, 숫자를 포함하면 NORMAL 이여야 한다.") {
                 // given
                 val password = "abcd1234"
@@ -71,7 +71,7 @@ class PasswordStrengthMeterTest: DescribeSpec({
             }
         }
 
-        context("1가지 규칙만 충족하는 경우 암호는 WEAK 여야 한다.") {
+        context("1가지 규칙만 충족하는 경우") {
             it("길이가 8글자 이상인 경우만 충족하면 암호는 WEAK 여야 한다.") {
                 // given
                 val password = "abcdefgh"
