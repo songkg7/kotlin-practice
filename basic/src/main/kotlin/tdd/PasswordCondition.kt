@@ -1,7 +1,7 @@
 package tdd
 
 interface PasswordCondition {
-    fun isSatisfied(password: String): Boolean
+    infix fun isSatisfied(password: String): Boolean
 }
 
 class LengthCondition(private val length: Int): PasswordCondition {

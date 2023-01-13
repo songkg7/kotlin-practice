@@ -9,7 +9,7 @@ class PasswordStrengthMeter(
 ) {
 
     fun test(password: String) =
-        when (conditions.count { it.isSatisfied(password) }) {
+        when (conditions.count { it isSatisfied password }) {
             3 -> PasswordStrength.STRONG
             2 -> PasswordStrength.NORMAL
             else -> PasswordStrength.WEAK
